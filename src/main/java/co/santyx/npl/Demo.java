@@ -1,5 +1,7 @@
 package co.santyx.npl;
 
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,11 +27,25 @@ class NPLController {
     }
 
     @GetMapping("/v1/letter-bank")
-    public String letterBank(@RequestParam String q) {
+    public String apiLetterBank(@RequestParam String q) {
 
         String out = unique(q).toString();
 
         return "letter-bank -> " + q + " -> " + out;
+    }
+
+    @GetMapping("/v1/sort")
+    public String apiSort(@RequestParam String q) {
+
+        String out = sort(q).toString();
+
+        return "sort -> " + q + " -> " + out;
+    }
+
+    private String sort(String in) {
+        return Stream.of(in.split(""))
+        .sorted()
+        .collect(Collectors.joining());
     }
 
     private String unique(String in) {
