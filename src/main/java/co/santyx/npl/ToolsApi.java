@@ -53,7 +53,7 @@ class NPLController {
     public String apiWordMatch(@RequestParam String q) throws IOException{
 
         // Move to service layer
-        Resource resource = resourceLoader.getResource("classpath:samples/" + "wordlists/words_alpha.txt");
+        Resource resource = resourceLoader.getResource("classpath:wordlists/words_alpha.txt");
         InputStream resourceInputStream = resource.getInputStream();
 
         if (resourceInputStream == null) {

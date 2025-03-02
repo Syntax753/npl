@@ -26,8 +26,14 @@ class HttpRequestTest {
 	}
 
     @Test
-	void sort() throws Exception {
+	void apiSort() throws Exception {
 		assertThat(this.restTemplate.getForObject("http://localhost:8080/v1/sort?q=azhufrnjfe",
 				String.class)).contains("azhufrnjfe ", "aeffhjnruz");
+	}
+
+    @Test
+	void apiWordMatch() throws Exception {
+		assertThat(this.restTemplate.getForObject("http://localhost:8080/v1/word-match?q=apple",
+				String.class)).contains("apple ", "aelpp");
 	}
 }
