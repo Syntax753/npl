@@ -10,23 +10,23 @@ https://docs.google.com/spreadsheets/d/1gBWmnAfm0QqMkJO-lCKmLDCUW5SPX8B8D7o5vJEK
 
 Project: npl
 
-    * ToolsApi
+    - ToolsApi
 
         Main Spring Boot API
 
-    * resources/wordlists
+    - resources/wordlists
     
         Intended for storing wordlists for searches/matching
 
-    * words_alpha.txt
+    - words_alpha.txt
 
         https://github.com/dwyl/english-words
 
-    * testing framework
+    - testing framework
 
         java.co.santyx.npl.testing.npl
 
-    * HttpRequestTest.java
+    - HttpRequestTest.java
 
         Intended for testing API HTTP endpoints
 
@@ -40,7 +40,7 @@ Project: npl
 
 ## Endpoints
 
-    * Letter Bank
+    - Letter Bank
 
         http://localhost:8080/v1/letter-bank
 
@@ -48,7 +48,7 @@ Project: npl
 
         Example: abcabdef -> abcdef
 
-    * Sort
+    - Sort
 
         http://localhost:8080/v1/sort
 
@@ -56,7 +56,7 @@ Project: npl
 
         Example: azhufrnjfe -> aeffhjnruz
 
-    * Word Match
+    - Word Match
 
         http://localhost:8080/v1/word-match
 
@@ -66,7 +66,7 @@ Project: npl
 
         Available wordlists:
             
-            * words_alpha.txt
+            - words_alpha.txt
 
 ## Future state
 
