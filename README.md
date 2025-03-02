@@ -4,25 +4,25 @@
 
     Project: npl
 
-    * ToolsApi
+        * ToolsApi
 
-    Main Spring Boot API
+            Main Spring Boot API
 
-    * resources/wordlists
-    
-    Intended for storing wordlists for searches/matching
+        * resources/wordlists
+        
+            Intended for storing wordlists for searches/matching
 
-    * words_alpha.txt
+        * words_alpha.txt
 
-        https://github.com/dwyl/english-words
+            https://github.com/dwyl/english-words
 
-    * testing framework
+        * testing framework
 
-    java.co.santyx.npl.testing.npl
+            java.co.santyx.npl.testing.npl
 
-    * HttpRequestTest.java
+        * HttpRequestTest.java
 
-        Intended for testing API HTTP endpoints
+            Intended for testing API HTTP endpoints
 
 
 ## APIs
