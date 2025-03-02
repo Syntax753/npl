@@ -2,7 +2,7 @@
 
 ## Website
 
-https://docs.google.com/spreadsheets/d/1gBWmnAfm0QqMkJO-lCKmLDCUW5SPX8B8D7o5vJEK_rA/edit?usp=sharing_eil&ts=67c1bcd5
+[Planning](https://docs.google.com/spreadsheets/d/1gBWmnAfm0QqMkJO-lCKmLDCUW5SPX8B8D7o5vJEK_rA/edit?usp=sharing_eil&ts=67c1bcd5)
 
 # NPL Tools Repository
 
