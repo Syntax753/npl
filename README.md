@@ -1,79 +1,56 @@
-# Documentation
+# npl/README.md
 
-## Website
+# NPL Project
 
-[Planning](https://docs.google.com/spreadsheets/d/1gBWmnAfm0QqMkJO-lCKmLDCUW5SPX8B8D7o5vJEK_rA/edit?usp=sharing_eil&ts=67c1bcd5)
+This project is a Spring Boot application that provides a RESTful API for various text processing functionalities. It includes endpoints for generating a unique letter bank, sorting letters, and matching words from a predefined word list.
 
-# NPL Tools Repository
+## Features
 
-## Project Structure
+- **Greeting Endpoint**: 
+  - `GET /` - Returns a simple greeting message.
+  
+- **Letter Bank**: 
+  - `GET /v1/letter-bank?q={query}` - Returns a unique set of letters from the provided query string.
+  
+- **Sort Letters**: 
+  - `GET /v1/sort?q={query}` - Returns the letters from the provided query string sorted in alphabetical order.
+  
+- **Word Match**: 
+  - `GET /v1/word-match?q={query}` - Reads a word list from a resource file and returns the sorted letters from the provided query string.
 
-Project: npl
+## Setup Instructions
 
-    - ToolsApi
+1. **Clone the Repository**:
+   ```
+   git clone <repository-url>
+   cd npl
+   ```
 
-        Main Spring Boot API
+2. **Build the Project**:
+   Ensure you have Maven installed, then run:
+   ```
+   mvn clean install
+   ```
 
-    - resources/wordlists
-    
-        Intended for storing wordlists for searches/matching
+3. **Run the Application**:
+   ```
+   mvn spring-boot:run
+   ```
 
-    - words_alpha.txt
+4. **Access the API**:
+   Open your browser and navigate to `http://localhost:8080` to access the greeting message. Use the following endpoints for other functionalities:
+   - `http://localhost:8080/v1/letter-bank?q=yourQuery`
+   - `http://localhost:8080/v1/sort?q=yourQuery`
+   - `http://localhost:8080/v1/word-match?q=yourQuery`
 
-        https://github.com/dwyl/english-words
+## Web Interface
 
-    - testing framework
+The project includes a simple web interface located at `src/main/resources/static/index.html` that allows users to interact with the API endpoints easily.
 
-        java.co.santyx.npl.testing.npl
+## Word List
 
-    - HttpRequestTest.java
+The word list used for the `word-match` endpoint is located in `src/main/resources/wordlists/words_alpha.txt`. Ensure this file is present for the endpoint to function correctly.
 
-        Intended for testing API HTTP endpoints
+## License
 
-
-## APIs
-
-    Current package: co.santyx.npl
-    This is the personal domain of Peter Turner (Syntax753). This can be migrated once a domain is decided for NPL
-
-    APIs are provided via Spring Boot RESTful webservices. Currently these are under version /v1/
-
-## Endpoints
-
-    - Letter Bank
-
-        http://localhost:8080/v1/letter-bank
-
-        Purpose: Filtering unique characters. Same ordering
-
-        Example: abcabdef -> abcdef
-
-    - Sort
-
-        http://localhost:8080/v1/sort
-
-        Purpose: Sorting characters
-
-        Example: azhufrnjfe -> aeffhjnruz
-
-    - Word Match
-
-        http://localhost:8080/v1/word-match
-
-        Ref: https://aaronson.org/wordlisted/
-
-        Purpose: Regex search for words in wordlist
-
-        Available wordlists:
-            
-            - words_alpha.txt
-
-## Future state
-
-    - GitHub Actions for Cloud deployment
-    - API Gateway
-
-## Discussions
-
-    - [ ] Cloud Platform decision
-    - [ ] Alternative wordlists  
+This project is licensed under the MIT License. See the LICENSE file for more details.

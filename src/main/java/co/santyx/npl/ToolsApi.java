@@ -1,3 +1,4 @@
+// filepath: /c:/Users/synt_/OneDrive/Dev/npl/src/main/java/co/santyx/npl/ToolsApi.java
 package co.santyx.npl;
 
 import java.io.IOException;
@@ -34,25 +35,19 @@ class NPLController {
     }
 
     @GetMapping("/v1/letter-bank")
-    public String apiLetterBank(@RequestParam String q) {
-
+    public String apiLetterBank(@RequestParam("q") String q) {
         String out = unique(q).toString();
-
         return "letter-bank -> " + q + " -> " + out;
     }
 
     @GetMapping("/v1/sort")
-    public String apiSort(@RequestParam String q) {
-
+    public String apiSort(@RequestParam("q") String q) {
         String out = sort(q).toString();
-
         return "sort -> " + q + " -> " + out;
     }
 
     @GetMapping("/v1/word-match")
-    public String apiWordMatch(@RequestParam String q) throws IOException{
-
-        // Move to service layer
+    public String apiWordMatch(@RequestParam("q") String q) throws IOException {
         Resource resource = resourceLoader.getResource("classpath:wordlists/words_alpha.txt");
         InputStream resourceInputStream = resource.getInputStream();
 
@@ -84,11 +79,8 @@ class NPLController {
             if (mask[c] == 0) {
                 sb.append(c);
             }
-
             mask[c]++;
         }
         return sb.toString();
-
     }
-
 }

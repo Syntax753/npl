@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPL Tools</title>
+    <script>
+        async function callApi(endpoint) {
+            const query = document.getElementById('query').value;
+            const response = await fetch(`/${endpoint}?q=${encodeURIComponent(query)}`);
+            const result = await response.text();
+            document.getElementById('result').innerText = result;
+        }
+    </script>
+</head>
+<body>
+    <h1>NPL Tools</h1>
+    <input type="text" id="query" placeholder="Enter your query" />
+    <div>
+        <button onclick="callApi('')">Greeting</button>
+        <button onclick="callApi('v1/letter-bank')">Letter Bank</button>
+        <button onclick="callApi('v1/sort')">Sort</button>
+        <button onclick="callApi('v1/word-match')">Word Match</button>
+    </div>
+    <h2>Result:</h2>
+    <pre id="result"></pre>
+</body>
+</html>
