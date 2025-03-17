@@ -6,7 +6,7 @@ FROM openjdk:23-jdk
 WORKDIR /app
 
 # Copy the executable JAR file to the working directory
-COPY target/demo-0.0.1-SNAPSHOT.jar app.jar
+COPY target/npl-1.0-SNAPSHOT.jar app.jar
 
 # Expose the port the application runs on
 EXPOSE 8080
