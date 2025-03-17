@@ -10,6 +10,7 @@ WORKDIR /app
 COPY npl-1.0-SNAPSHOT.jar app.jar
 
 # Expose the port the application runs on
+ENV HOST 0.0.0.0
 EXPOSE 8080
 
 # Run the JAR file
