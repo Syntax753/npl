@@ -58,8 +58,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <outputDirectory>/</outputDirectory>
+                
                 <configuration>
+                    <outputDirectory>.</outputDirectory>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
