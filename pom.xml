@@ -30,6 +30,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>${spring.boot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
             <version>${spring.boot.version}</version>
         </dependency>
@@ -65,7 +70,7 @@
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
-                            <mainClass>co.santyx.npl.NplApplication</mainClass>
+                            <mainClass>co.santyx.npl.ToolsApi</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
