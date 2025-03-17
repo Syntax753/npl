@@ -62,10 +62,12 @@
                 <configuration>
                     <outputDirectory>.</outputDirectory>
                     <archive>
-                        <manifest>
-                            <addClasspath>true</addClasspath>
-                        </manifest>
-                    </archive>
+          <manifest>
+            <addClasspath>true</addClasspath>
+            <classpathPrefix>lib/</classpathPrefix>
+            <mainClass>com.mypackage.MyClass</mainClass>
+          </manifest>
+        </archive>
                 </configuration>
             </plugin>
         </plugins>
