@@ -5,6 +5,8 @@ FROM openjdk:23-jdk
 # Set the working directory in the container
 WORKDIR /app
 
+RUN mvnw clean package
+
 # Copy the executable JAR file to the working directory
 COPY target/npl-1.0-SNAPSHOT.jar app.jar
 
