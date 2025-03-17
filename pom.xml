@@ -58,12 +58,15 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
+                <outputDirectory>/</outputDirectory>
                 <configuration>
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
                             <mainClass>co.santyx.npl.ToolsAPI</mainClass>
                         </manifest>
+                           
+      
                     </archive>
                 </configuration>
             </plugin>
