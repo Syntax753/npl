@@ -64,10 +64,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>co.santyx.npl.ToolsAPI</mainClass>
                         </manifest>
-                           
-      
                     </archive>
                 </configuration>
             </plugin>
