@@ -14,20 +14,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
-import java.util.StringTokenizer;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @SpringBootApplication
 @RestController
 class ToolsApi {
+    @Autowired
+    private ResourceLoader resourceLoader;
+
     public static void main(String[] args) {
         SpringApplication.run(ToolsApi.class, args);
     }
-
-    @Autowired
-    private ResourceLoader resourceLoader;
 
     @GetMapping("/")
     public String hello() {
@@ -52,7 +50,7 @@ class ToolsApi {
         InputStream resourceInputStream = resource.getInputStream();
 
         Scanner sc = new Scanner(resourceInputStream, StandardCharsets.UTF_8);
-        String query = ".*"+q.toUpperCase()+".*";
+        String query = ".*" + q.toUpperCase() + ".*";
 
         StringBuilder sb = new StringBuilder();
         while (sc.hasNext()) {
@@ -80,6 +78,31 @@ class ToolsApi {
         while (sc.hasNext()) {
             String line = sc.nextLine();
             if (line.length() == l && query.equals(sort(line))) {
+                sb.append(line).append(",");
+            }
+        }
+
+        return sb.toString();
+    }
+
+    @GetMapping("/v1/consonantcy")
+    public String consonantcy(@RequestParam("q") String q, @RequestParam("l") Integer l) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:wordlists/xwordlist.dict");
+        InputStream resourceInputStream = resource.getInputStream();
+
+        Scanner sc = new Scanner(resourceInputStream, StandardCharsets.UTF_8);
+
+        StringBuilder qb = new StringBuilder("[AEIOU]*");
+        for (char c:q.toCharArray()) {
+            qb.append(String.valueOf(c).toUpperCase());
+            qb.append("[AEIOU]*");
+        }
+        String query = qb.toString();
+
+        StringBuilder sb = new StringBuilder();
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+            if (line.matches(query)) {
                 sb.append(line).append(",");
             }
         }
