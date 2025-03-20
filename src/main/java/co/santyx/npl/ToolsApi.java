@@ -67,8 +67,8 @@ class ToolsApi {
         return sb.toString();
     }
 
-    @GetMapping("/v1/anagram")
-    public String anagram(@RequestParam("q") String q, @RequestParam("l") Integer l) throws IOException {
+    @GetMapping("/v1/transposal")
+    public String transposal(@RequestParam("q") String q, @RequestParam("l") Integer l) throws IOException {
         Resource resource = resourceLoader.getResource("classpath:wordlists/xwordlist.dict");
         InputStream resourceInputStream = resource.getInputStream();
 
