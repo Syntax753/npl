@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
+import java.util.StringTokenizer;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,53 +34,55 @@ class ToolsApi {
         return "Hello, Puzzler!";
     }
 
-    @GetMapping("/v1/letter-bank")
-    public String apiLetterBank(@RequestParam("q") String q) {
-        String out = unique(q).toString();
-        return "letter-bank -> " + q + " -> " + out;
-    }
+//    @GetMapping("/v1/letter-bank")
+//    public String apiLetterBank(@RequestParam("q") String q) {
+//        String out = unique(q).toString();
+//        return "letter-bank -> " + q + " -> " + out;
+//    }
+//
+//    @GetMapping("/v1/sort")
+//    public String apiSort(@RequestParam("q") String q) {
+//        String out = sort(q).toString();
+//        return "sort -> " + q + " -> " + out;
+//    }
 
-    @GetMapping("/v1/sort")
-    public String apiSort(@RequestParam("q") String q) {
-        String out = sort(q).toString();
-        return "sort -> " + q + " -> " + out;
-    }
-
-    @GetMapping("/v1/word-match")
-    public String apiWordMatch(@RequestParam("q") String q) throws IOException {
-        Resource resource = resourceLoader.getResource("classpath:wordlists/words_alpha.txt");
+    @GetMapping("/v1/dictionary")
+    public String apiWordMatch(@RequestParam("q") String q, @RequestParam("l") Integer l) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:wordlists/xwordlist.dict");
         InputStream resourceInputStream = resource.getInputStream();
 
-        if (resourceInputStream == null) {
-            throw new NullPointerException("Cannot find resource file " + resource);
-        }
-        
-        String text = null;
-        try (Scanner scanner = new Scanner(resourceInputStream, StandardCharsets.UTF_8.name())) {
-            text = scanner.useDelimiter("\n").next();
-            System.out.println(text);
-        }
+        Scanner sc = new Scanner(resourceInputStream, StandardCharsets.UTF_8);
+        String query = ".*"+q.toUpperCase()+".*";
 
-        String out = sort(q).toString();
-        return "word-match -> " + q + " -> " + out;
-    }
-
-    private String sort(String in) {
-        return Stream.of(in.split(""))
-                .sorted()
-                .collect(Collectors.joining());
-    }
-
-    private String unique(String in) {
-        int[] mask = new int[256];
-        StringBuilder sb = new StringBuilder(in.length());
-
-        for (char c : in.toCharArray()) {
-            if (mask[c] == 0) {
-                sb.append(c);
+        StringBuilder sb = new StringBuilder();
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+            if (line.length() == l) {
+                if (line.matches(query)) {
+                    sb.append(line).append(",");
+                }
             }
-            mask[c]++;
         }
+
         return sb.toString();
     }
+
+//    private String sort(String in) {
+//        return Stream.of(in.split(""))
+//                .sorted()
+//                .collect(Collectors.joining());
+//    }
+//
+//    private String unique(String in) {
+//        int[] mask = new int[256];
+//        StringBuilder sb = new StringBuilder(in.length());
+//
+//        for (char c : in.toCharArray()) {
+//            if (mask[c] == 0) {
+//                sb.append(c);
+//            }
+//            mask[c]++;
+//        }
+//        return sb.toString();
+//    }
 }

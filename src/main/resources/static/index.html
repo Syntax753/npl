@@ -7,7 +7,8 @@
     <script>
         async function callApi(endpoint) {
             const query = document.getElementById('query').value;
-            const response = await fetch(`/${endpoint}?q=${encodeURIComponent(query)}`);
+            const length = +document.getElementById('length').value;
+            const response = await fetch(`/${endpoint}?q=${encodeURIComponent(query)}&l=${encodeURIComponent(length)}`);
             const result = await response.text();
             document.getElementById('result').innerText = result;
         }
@@ -15,12 +16,14 @@
 </head>
 <body>
     <h1>NPL Tools</h1>
-    <input type="text" id="query" placeholder="Enter your query" />
+    <input type="text" id="query" placeholder="Enter letters" />
+    <input type="text" id="length" placeholder="Enter target word size" />
     <div>
         <button onclick="callApi('')">Greeting</button>
-        <button onclick="callApi('v1/letter-bank')">Letter Bank</button>
-        <button onclick="callApi('v1/sort')">Sort</button>
-        <button onclick="callApi('v1/word-match')">Word Match</button>
+        <button onclick="callApi('v1/dictionary')">Dictionary</button>
+<!--        <button onclick="callApi('v1/letter-bank')">Letter Bank</button>-->
+<!--        <button onclick="callApi('v1/sort')">Sort</button>-->
+<!--        <button onclick="callApi('v1/word-match')">Word Match</button>-->
     </div>
     <h2>Result:</h2>
     <pre id="result"></pre>
