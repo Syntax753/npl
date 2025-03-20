@@ -93,7 +93,7 @@ class ToolsApi {
         Scanner sc = new Scanner(resourceInputStream, StandardCharsets.UTF_8);
 
         StringBuilder qb = new StringBuilder("[AEIOU]*");
-        for (char c:q.toCharArray()) {
+        for (char c : q.toCharArray()) {
             qb.append(String.valueOf(c).toUpperCase());
             qb.append("[AEIOU]*");
         }
@@ -102,8 +102,10 @@ class ToolsApi {
         StringBuilder sb = new StringBuilder();
         while (sc.hasNext()) {
             String line = sc.nextLine();
-            if (line.matches(query)) {
-                sb.append(line).append(",");
+            if (line.length() == l || l == 0) {
+                if (line.matches(query)) {
+                    sb.append(line).append(",");
+                }
             }
         }
 
