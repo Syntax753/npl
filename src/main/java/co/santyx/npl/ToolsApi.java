@@ -72,12 +72,12 @@ class ToolsApi {
 
         Scanner sc = new Scanner(resourceInputStream, StandardCharsets.UTF_8);
         String query = sort(q.toUpperCase());
-        l = query.length();
+        int ql = query.length();
 
         StringBuilder sb = new StringBuilder();
         while (sc.hasNext()) {
             String line = sc.nextLine();
-            if (line.length() == l && query.equals(sort(line))) {
+            if (line.length() == ql && query.equals(sort(line))) {
                 sb.append(line).append(",");
             }
         }
@@ -108,26 +108,46 @@ class ToolsApi {
                 }
             }
         }
+        return sb.toString();
+    }
+
+
+    @GetMapping("/v1/letter-bank")
+    public String letterBank(@RequestParam("q") String q, @RequestParam("l") Integer l) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:wordlists/xwordlist.dict");
+        InputStream resourceInputStream = resource.getInputStream();
+
+        Scanner sc = new Scanner(resourceInputStream, StandardCharsets.UTF_8);
+        String query = sort(unique(q.toUpperCase()));
+
+        StringBuilder sb = new StringBuilder();
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+            if (query.equals(sort(unique(line)))) {
+                sb.append(line).append(",");
+            }
+        }
 
         return sb.toString();
     }
+
 
     private String sort(String in) {
         return Stream.of(in.split(""))
                 .sorted()
                 .collect(Collectors.joining());
     }
-//
-//    private String unique(String in) {
-//        int[] mask = new int[256];
-//        StringBuilder sb = new StringBuilder(in.length());
-//
-//        for (char c : in.toCharArray()) {
-//            if (mask[c] == 0) {
-//                sb.append(c);
-//            }
-//            mask[c]++;
-//        }
-//        return sb.toString();
-//    }
+
+    private String unique(String in) {
+        int[] mask = new int[256];
+        StringBuilder sb = new StringBuilder(in.length());
+
+        for (char c : in.toCharArray()) {
+            if (mask[c] == 0) {
+                sb.append(c);
+            }
+            mask[c]++;
+        }
+        return sb.toString();
+    }
 }
