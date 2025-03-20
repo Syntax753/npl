@@ -92,10 +92,10 @@ class ToolsApi {
 
         Scanner sc = new Scanner(resourceInputStream, StandardCharsets.UTF_8);
 
-        StringBuilder qb = new StringBuilder("[AEIOU]*");
+        StringBuilder qb = new StringBuilder("[AEIOUY]*");
         for (char c : q.toCharArray()) {
             qb.append(String.valueOf(c).toUpperCase());
-            qb.append("[AEIOU]*");
+            qb.append("[AEIOUY]*");
         }
         String query = qb.toString();
 
