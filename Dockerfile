@@ -1,17 +1,19 @@
-# Use an official OpenJDK runtime as a parent image
-FROM openjdk:23-jdk
+# Use the official maven/Java 8 image to create a build artifact.
+# https://hub.docker.com/_/maven
+FROM maven:3.8-amazoncorretto-21 AS builder
 
-# Set the working directory in the container
+# Copy local code to the container image.
 WORKDIR /app
+COPY pom.xml .
+COPY src ./src
 
-# RUN mvnw.cmd clean package
+# Build a release artifact.
+RUN mvn package -DskipTests
 
-# Copy the executable JAR file to the working directory
-COPY npl-1.0-SNAPSHOT.jar app.jar
+FROM amazoncorretto:21
 
-# Expose the port the application runs on
-ENV HOST 0.0.0.0
-EXPOSE 8080
+COPY --from=builder /app/target/npl-*jar npl-tools.jar
 
-# Run the JAR file
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Run the web service on container startup.
+CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/npl-tools.jar"]
+

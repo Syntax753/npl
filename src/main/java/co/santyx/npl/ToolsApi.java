@@ -18,14 +18,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @SpringBootApplication
-public class ToolsApi {
+@RestController
+class ToolsApi {
     public static void main(String[] args) {
         SpringApplication.run(ToolsApi.class, args);
     }
-}
 
-@RestController
-class NPLController {
     @Autowired
     private ResourceLoader resourceLoader;
 
