@@ -12,7 +12,7 @@ RUN mvn package -DskipTests
 
 FROM amazoncorretto:21
 
-COPY --from=builder /app/target/npl-*jar npl-tools.jar
+COPY --from=builder /app/target/npl-*.jar npl-tools.jar
 
 # Run the web service on container startup.
 CMD ["java", "-Djava.security.egd=file:/dev/./urandom", "-jar", "/npl-tools.jar"]
