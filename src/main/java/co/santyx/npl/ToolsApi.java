@@ -57,7 +57,7 @@ class ToolsApi {
         StringBuilder sb = new StringBuilder();
         while (sc.hasNext()) {
             String line = sc.nextLine();
-            if (line.length() == l) {
+            if (line.length() == l || l == 0) {
                 if (line.matches(query)) {
                     sb.append(line).append(",");
                 }
