@@ -47,7 +47,7 @@ class ToolsApi {
 //    }
 
     @GetMapping("/v1/dictionary")
-    public String apiWordMatch(@RequestParam("q") String q, @RequestParam("l") Integer l) throws IOException {
+    public String dictionary(@RequestParam("q") String q, @RequestParam("l") Integer l) throws IOException {
         Resource resource = resourceLoader.getResource("classpath:wordlists/xwordlist.dict");
         InputStream resourceInputStream = resource.getInputStream();
 
@@ -67,11 +67,31 @@ class ToolsApi {
         return sb.toString();
     }
 
-//    private String sort(String in) {
-//        return Stream.of(in.split(""))
-//                .sorted()
-//                .collect(Collectors.joining());
-//    }
+    @GetMapping("/v1/anagram")
+    public String anagram(@RequestParam("q") String q, @RequestParam("l") Integer l) throws IOException {
+        Resource resource = resourceLoader.getResource("classpath:wordlists/xwordlist.dict");
+        InputStream resourceInputStream = resource.getInputStream();
+
+        Scanner sc = new Scanner(resourceInputStream, StandardCharsets.UTF_8);
+        String query = sort(q.toUpperCase());
+        l = query.length();
+
+        StringBuilder sb = new StringBuilder();
+        while (sc.hasNext()) {
+            String line = sc.nextLine();
+            if (line.length() == l && query.equals(sort(line))) {
+                sb.append(line).append(",");
+            }
+        }
+
+        return sb.toString();
+    }
+
+    private String sort(String in) {
+        return Stream.of(in.split(""))
+                .sorted()
+                .collect(Collectors.joining());
+    }
 //
 //    private String unique(String in) {
 //        int[] mask = new int[256];
