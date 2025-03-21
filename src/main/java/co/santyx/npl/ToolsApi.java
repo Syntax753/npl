@@ -57,7 +57,7 @@ class ToolsApi {
             String line = sc.nextLine();
             if (line.length() == l || l == 0) {
                 if (line.matches(query)) {
-                    sb.append(line).append(",");
+                    sb.append(line).append("<br/>");
                 }
             }
         }
@@ -78,7 +78,7 @@ class ToolsApi {
         while (sc.hasNext()) {
             String line = sc.nextLine();
             if (line.length() == ql && query.equals(sort(line))) {
-                sb.append(line).append(",");
+                sb.append(line).append("<br/>");
             }
         }
 

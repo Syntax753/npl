@@ -16,11 +16,23 @@
 </head>
 <body>
     <h1>NPL Tools</h1>
+    <p>Pattern matching follows these rules</p>
+    <table>
+        <tr><th align="left">Type</th><th align="left">Character</th><th align="left">Example</th><th align="left">Matches</th></tr>
+        <tr><td>Simple match</td><td></td><td>apple</td><td>apple</td></tr>
+        <tr><td>Unknown character</td><td>.</td><td>a..le</td><td>apple</td></tr>
+        <tr><td>Zero or more character in sequence</td><td>*</td><td>a.*le</td><td>apple, able, etc</td></tr>
+        <tr><td>One or more character in sequence</td><td>+</td><td>ap+le</td><td>apple</td></tr>
+        <tr><td>Zero or one character</td><td>?</td><td>apples?</td><td>apple, apples</td></tr>
+        <tr><td>Character selection</td><td>[]</td><td>appl[ey]</td><td>apple, apply but not appla, applu</td></tr>
+    </table>
+
+    <br/>
     <input type="text" id="query" placeholder="Enter letters" />
     <input type="text" id="length" placeholder="Enter target word size" />
     <div>
-        <button onclick="callApi('')">Greeting</button>
-        <button onclick="callApi('v1/dictionary')">Dictionary</button>
+<!--        <button onclick="callApi('')">Greeting</button>-->
+        <button onclick="callApi('v1/dictionary')">Word Search</button>
         <button onclick="callApi('v1/transposal')">Transposal</button>
         <button onclick="callApi('v1/consonantcy')">Consonantcy</button>
         <button onclick="callApi('v1/letter-bank')">Letter Bank</button>
